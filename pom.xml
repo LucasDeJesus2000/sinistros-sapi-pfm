@@ -25,6 +25,13 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>0c8d88c2-d09d-472f-a589-9ca239060bdc</groupId>
+			<artifactId>sinistros-sapi-pfm</artifactId>
+			<version>1.0.1</version>
+			<classifier>raml</classifier>
+			<type>zip</type>
+		</dependency>
+		<dependency>
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-sockets-connector</artifactId>
 			<version>1.2.4</version>
