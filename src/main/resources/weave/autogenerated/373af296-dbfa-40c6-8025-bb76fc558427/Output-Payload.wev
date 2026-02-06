@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_373af296_dbfa_40c6_8025_bb76fc558427_Output_Payload = Array<{  businessUnit?: {    coordinator: String,     manager: String,     businessUnitCode: Number,     name: String,     _?: Any  } {"description": "Business Unit"},   name?: String,   registrationCode?: String,   position?: String,   _?: Any}>
+

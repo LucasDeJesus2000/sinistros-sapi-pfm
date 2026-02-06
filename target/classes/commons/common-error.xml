@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="commons-error.xml" />
+	<munit:test name="cf-api-main-error-handler-api-kit-bad-request-test" doc:id="89911574-91c4-49ff-954f-1a199686ce1b" description="Test" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="api-kit-bad-request" doc:id="58963d79-756d-4fd4-80ff-bc06d2bfbd18" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit-tools:mock-when doc:name="Publish Message Kafka Error" doc:id="7b0bf56a-51d4-49c2-b8e7-eafa07afd933" processor="kafka:publish">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="${elk.kafka.topic}" attributeName="topic" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+	</munit:test>
+	<munit:test name="cf-api-main-error-handler-api-kit-not-found-test" doc:id="69f682a4-8c9a-4b28-b3e9-4baddd65f9ab" description="Test" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="api-kit-not-found" doc:id="16e0a69e-a3d7-4fb3-b880-9ba50a8b82d6" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit-tools:mock-when doc:name="Publish Message Kafka Error" doc:id="b6ece4c5-5b30-43fa-b622-aa0b0e4560d9" processor="kafka:publish" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="${elk.kafka.topic}" attributeName="topic" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+	</munit:test>
+	<munit:test name="cf-api-main-error-handler-http-bad-request-test" doc:id="4fe4ecc1-0215-4f19-8faa-54a8184668e1" description="Test" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="http-bad-request" doc:id="bc716022-7ad1-4366-b999-6447a42f807d" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit-tools:mock-when doc:name="Publish Message Kafka Error" doc:id="d1a07c78-6248-4a1b-87a7-e356ed2ff2ab" processor="kafka:publish" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="${elk.kafka.topic}" attributeName="topic" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+	</munit:test>
+	<munit:test name="cf-api-main-error-handler-http-not-found-test" doc:id="3d46165e-2e3c-4376-af26-a925a3a1be20" description="Test" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="http-not-found" doc:id="ead2839b-c985-42c2-b995-bb70dc164a8d" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit-tools:mock-when doc:name="Publish Message Kafka Error" doc:id="6ac80dad-54b2-42b8-ac4c-43d00175cd20" processor="kafka:publish" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="${elk.kafka.topic}" attributeName="topic" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+	</munit:test>
+	<munit:test name="cf-api-main-error-handler-any-test" doc:id="e5c67fea-7a28-42ba-a746-79dc88a67640" description="Test" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="any-error" doc:id="c11302dc-7d2d-4d10-847c-60082d0230b3" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="ANY" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit-tools:mock-when doc:name="Publish Message Kafka Error" doc:id="cbdae95b-5fd7-4fdf-997c-ff0edf809704" processor="kafka:publish" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="${elk.kafka.topic}" attributeName="topic" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+	</munit:test>
+	<munit:test name="cf-api-console-error-handler-http-not-found-test" doc:id="398fab92-d511-4605-aa2f-935cb04f2058" description="Test" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="api-kit-not-found" doc:id="09f9fe9f-cfbc-44c5-ace0-02cbb982e8d9" processor="apikit:console" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="api-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit-tools:mock-when doc:name="Publish Message Kafka Error" doc:id="51bfe73a-0935-400a-a0e1-2c1f996d2da9" processor="kafka:publish" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="${elk.kafka.topic}" attributeName="topic" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+	</munit:test>
+	<munit:test name="cf-api-logs" doc:id="b117d383-3610-4769-8308-7fd00b450b82" description="Test" >
+		<munit:execution>
+			<flow-ref doc:name="cf-ini::log" doc:id="552022ad-3c9e-459c-81e7-12a675e574c1" name="cf-ini::log"/>
+			<flow-ref doc:name="cf-end::log" doc:id="7c299dae-580c-4bce-a019-46df566614b7" name="cf-end::log" />
+		</munit:execution>
+	</munit:test>
+
+
+</mule>

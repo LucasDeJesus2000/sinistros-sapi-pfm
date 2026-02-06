@@ -1,0 +1,32 @@
+#  This file contains properties meant to be used in local Environment
+#Gateway defaults
+
+api:
+  id: "1"
+
+# HTTPS Properties
+http:
+  host: "0.0.0.0"
+  port: "8081"
+  private:
+    port: "8082"
+  read:
+    timeout: "5000"
+    
+templatePapi:
+  protocol: "HTTP"
+  host: "localhost"
+  basePath: "/v1"
+  port: "8182"
+  timeout:
+    connection: "600000"
+    response: "600000"
+  authorization: "dGVtcGxhdGU6dGVtcGxhdGU="
+    
+elk:
+  kafka:
+   bootstrap: "localhost:9092,localhost:9093"
+   topic: "cea-integration-crm-mdm-topic-log"  
+   
+   
+  

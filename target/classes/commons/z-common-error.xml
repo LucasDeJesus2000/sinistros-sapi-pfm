@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:kafka="http://www.mulesoft.org/schema/mule/kafka"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/kafka http://www.mulesoft.org/schema/mule/kafka/current/mule-kafka.xsd">
+
+	<error-handler name="cf-api-main-error-handler">
+		<on-error-propagate type="APIKIT:BAD_REQUEST">
+			<flow-ref doc:name="Flow Reference"
+				doc:id="091ce9e0-8d5d-41c8-9f94-c1c1f09a8f84"
+				name="cf-error::badRequest" />
+		</on-error-propagate>
+
+		<on-error-propagate type="APIKIT:NOT_FOUND">
+			<flow-ref doc:name="Flow Reference"
+				doc:id="5a356429-61fa-490a-9bed-cd29b251adf4"
+				name="cf-error::notFound" />
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:BAD_REQUEST">
+			<flow-ref doc:name="Flow Reference"
+				doc:id="c251b256-f6f9-4d58-8ec1-564713b432d8"
+				name="cf-error::badRequest" />
+		</on-error-propagate>
+		<on-error-propagate type="HTTP:NOT_FOUND">
+			<flow-ref doc:name="Flow Reference"
+				doc:id="4a6bffe7-e05b-4154-a06e-3e3b10dac461"
+				name="cf-error::notFound" />
+		</on-error-propagate>
+		<!-- tratamento de erros -->
+		<!-- tratamento de erros -->
+		<on-error-propagate enableNotifications="true"
+			logException="true" doc:name="On Error Propagate"
+			doc:id="8899cad2-b5c3-4871-962f-fcd0232b83ae" type="ANY">
+			<flow-ref doc:name="Flow Reference"
+				doc:id="14c23b5d-f7ec-4fa0-b694-8f2dc857648d"
+				name="cf-error::internalServerError" />
+		</on-error-propagate>
+
+
+	</error-handler>
+
+	<error-handler name="cf-api-console-error-handler">
+		<on-error-propagate type="APIKIT:NOT_FOUND">
+			<flow-ref doc:name="Flow Reference"
+				doc:id="22edd7f0-9960-491b-99d6-239b9047c15b"
+				name="cf-error::notFound" />
+		</on-error-propagate>
+	</error-handler>
+
+	<sub-flow name="cf-error::badRequest"
+		doc:id="f01166b3-7669-4388-a5d4-16b67b500ef5">
+
+		<set-variable variableName="httpStatus" value="400" doc:name="httpStatus" doc:id="43e3c11c-c43d-40c3-89d1-4fac52d66ded" />
+		<flow-ref doc:name="error::log"
+			doc:id="b677f154-53e5-4b33-89f5-3c91d49f0ddf" name="cf-error::log" />
+
+		<set-payload
+			value="#[${file::dwl/error/c-bad-request-error.dwl}]"
+			doc:name="c-bad-request-error.dwl"
+			doc:id="e61fb265-6e50-496e-a5b3-995cbf06f5a0" />
+
+	</sub-flow>
+
+	<sub-flow name="cf-error::notFound"
+		doc:id="281cc888-f814-4b2a-b802-4ef1ce952467">
+
+		<set-variable variableName="httpStatus" value="404" doc:name="httpStatus" doc:id="2f84bd6b-4802-4f74-999a-7c0685160de2" />
+		<flow-ref doc:name="error::log"
+			doc:id="310e3be1-9835-4169-978b-02389d834f84" name="cf-error::log" />
+
+		<set-payload
+			value="#[${file::dwl/error/c-not-found-error.dwl}]"
+			doc:name="c-not-found-error.dwl"
+			doc:id="fdd135ed-81e9-491d-b99c-9d6e9c23115c" />
+
+	</sub-flow>
+
+	<sub-flow name="cf-error::internalServerError"
+		doc:id="1bc6d2ce-3b46-4285-a6d9-3b5382955f18">
+
+		<set-variable variableName="httpStatus" value="500" doc:name="httpStatus" doc:id="fe2e546a-ef67-499b-84b8-2dbbc6187709" />
+		<flow-ref doc:name="error::log"
+			doc:id="b059ee5f-1f98-4f83-b3db-b53d521bd3d8" name="cf-error::log" />
+
+		<set-payload
+			value="#[${file::dwl/error/c-internal-server-error.dwl}]"
+			doc:name="c-internal-server-error.dwl"
+			doc:id="7d261b6b-2364-44e1-a9e0-4bcc1beeea7c" />
+
+	</sub-flow>
+	<sub-flow name="cf-ini::log"
+		doc:id="db49310f-ad08-4515-8a90-02783f4a7ce2">
+		<logger level="INFO" doc:name="Logger-padrao-inicial"
+			doc:id="fbe01b90-abc6-4e0c-a5f4-670fcd5c28d0"
+			message="#[${file::dwl/log/log-inicial-padrao.dwl}]" />
+	</sub-flow>
+
+	<sub-flow name="cf-end::log"
+		doc:id="508aaccb-d20f-4a07-98c8-0c2132b1a91f">
+		<logger level="INFO" doc:name="Logger-padrao-final"
+			doc:id="aa28e824-3007-4061-9f7c-958ce3a897f0"
+			message="#[${file::dwl/log/log-final-padrao.dwl}]" />
+	</sub-flow>
+
+
+
+	<sub-flow name="cf-error::log"
+		doc:id="5333b914-8351-4fca-baa0-be8bc0537c16">
+		<ee:transform doc:name="log-kafka" doc:id="091c9fec-f7ee-4b7e-952d-fb7ab08366b4" >
+			<ee:message >
+			</ee:message>
+			<ee:variables>
+				<ee:set-variable
+					resource="dwl/log/log-erro-exemplo.dwl" variableName="result_kafka"></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger"
+			doc:id="1ea202b2-afc5-47ae-8b64-6b55cd96ef8c"
+			message="#[vars.result_kafka]" />
+	</sub-flow>
+
+</mule>

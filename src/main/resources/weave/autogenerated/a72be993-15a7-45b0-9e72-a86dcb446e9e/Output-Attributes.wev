@@ -1,0 +1,28 @@
+%dw 2.0
+
+type auto_a72be993_15a7_45b0_9e72_a86dcb446e9e_Output_Attributes = {|
+  requestPath: String, 
+  rawRequestPath: String, 
+  method: String, 
+  listenerPath: String, 
+  localAddress: String, 
+  queryString: String, 
+  relativePath: String, 
+  maskedRequestPath: String, 
+  remoteAddress: String, 
+  requestUri: String, 
+  rawRequestUri: String, 
+  scheme: String, 
+  version: String, 
+  headers: {|
+    authorization: String, 
+    "x-correlation-id": String, 
+    host: String, 
+    "user-agent": String, 
+    connection: String, 
+    accept: String
+  |}, 
+  queryParams: Array<Nothing>, 
+  uriParams: Array<Nothing>
+|}
+

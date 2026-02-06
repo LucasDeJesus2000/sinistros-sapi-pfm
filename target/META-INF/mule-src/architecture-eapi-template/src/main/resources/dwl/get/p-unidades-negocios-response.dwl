@@ -1,0 +1,16 @@
+%dw 2.0
+output application/json
+---
+[{
+  "codigoUnidadeNegocio": 123,
+  "nome": "Supply",
+  "gerente": "Romario",
+  "coordenador": "Edmundo"
+},
+
+{
+  "codigoUnidadeNegocio": 234,
+  "nome": "Supply",
+  "gerente": "Biro Biro",
+  "coordenador": "Vladimir"
+}]
