@@ -11,14 +11,5 @@ http:
   read:
     timeout: "5000"
     
-system:
-  protocol: "HTTPS"
-  host: "cea.com.br"
-  basePath: "/cea-mule"
-  port: "443"
-  timeout:
-    connection: "5000"
-    response: "3000"
-  path:
-    path: "/recurso"
+
      

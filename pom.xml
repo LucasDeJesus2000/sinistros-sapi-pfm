@@ -1,38 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>b577bafa-9d8c-45e8-9250-70a6057355d2</groupId>
-	<artifactId>architecture-eapi-template</artifactId>
+	<groupId>com.mycompany</groupId>
+	<artifactId>sinistros-sapi-pfm</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 	<name>sinistros-sapi-pfm</name>
 	<properties>
-		<!-- Defaults -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<!-- Business group  unidade -->
-		<businessUnity>303cdbf7-2368-4ad8-893b-144badc46700</businessUnity>
-		<!-- MUNIT -->
-		<munit.runCoverage>true</munit.runCoverage>
-		<munit.failBuild>true</munit.failBuild>
-		<requiredApplicationCoverage>85</requiredApplicationCoverage>
-		<requiredResourceCoverage>85</requiredResourceCoverage>
-		<requiredFlowCoverage>85</requiredFlowCoverage>
-		<!-- Deployments properties General -->
-		<connectedAppClientId>${ca_id}</connectedAppClientId>
-		<connectedAppClientSecret>${ca_secret}</connectedAppClientSecret>
-		<connectedAppGrantType>client_credentials</connectedAppGrantType>
-		<environment>${env}</environment>
-		<environment.client_id>${env_client_id}</environment.client_id>
-		<environment.client_secret>${env_client_secret}</environment.client_secret>
-		<environment.sufix.name>${env_app_name}</environment.sufix.name>
-		<!-- Deployments properties CH2 -->
-		<businessGroupId>${bg_deploy}</businessGroupId>
-		<targetName>${ps_name}</targetName>
-		<replicas>1</replicas>
-		<vCores>0.1</vCores>
-		<!-- API -->
-		<api.version>1.0.1</api.version>
+		<api.version>1.0.0</api.version>
 		<mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
 		<mule.http.connector.version>1.10.0</mule.http.connector.version>
 		<mule.sockets.connector.version>1.2.4</mule.sockets.connector.version>
@@ -47,149 +22,7 @@
 		<secure.config.prop.module.version>1.2.7</secure.config.prop.module.version>
 		<maven.resource.plugin.version>3.3.1</maven.resource.plugin.version>
 		<json.logger.version>2.1.0</json.logger.version>
-		<!-- Usado para basic authentication  -->
-		<spring.version>5.3.37</spring.version>
-		<spring-security.version>5.8.13</spring-security.version>
-		<!-- Usado para basic authentication  -->
-		<teste.senha>architecture</teste.senha>
 	</properties>
-	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven.resource.plugin.version}</version>
-				<configuration>
-					<nonFilteredFileExtensions>
-						<nonFilteredFileExtension>p12</nonFilteredFileExtension>
-						<nonFilteredFileExtension>pem</nonFilteredFileExtension>
-						<nonFilteredFileExtension>cer</nonFilteredFileExtension>
-					</nonFilteredFileExtensions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>${maven.clean.plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<classifier>mule-application</classifier>
-					<cloudhub2Deployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<provider>MC</provider>
-						<environment>${environment}</environment>
-						<target>${targetName}</target>
-						<releaseChannel>LTS</releaseChannel>
-						<javaVersion>17</javaVersion>
-						<connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
-						<connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
-						<connectedAppGrantType>${connectedAppGrantType}</connectedAppGrantType>
-						<applicationName>${project.artifactId}-${environment.sufix.name}</applicationName>
-						<replicas>${replicas}</replicas>
-						<vCores>${vCores}</vCores>
-						<skipDeploymentVerification>false</skipDeploymentVerification>
-						<businessGroupId>${businessGroupId}</businessGroupId>
-						<properties>
-							<mule.env>${environment}</mule.env>
-							<anypoint.platform.client_id>${environment.client_id}</anypoint.platform.client_id>
-							<anypoint.platform.client_secret>${environment.client_secret}</anypoint.platform.client_secret>
-						</properties>
-						<integrations>
-							<services>
-								<objectStoreV2>
-									<enabled>true</enabled>
-								</objectStoreV2>
-							</services>
-						</integrations>
-						<deploymentSettings>
-							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
-							<http>
-								<inbound>
-									<publicUrl>https://integracao-us.dev.ceabr.io/${project.artifactId}-${environment.sufix.name}</publicUrl>
-									<lastMileSecurity>false</lastMileSecurity>
-									<forwardSslSession>false</forwardSslSession>
-								</inbound>
-							</http>
-						</deploymentSettings>
-					</cloudhub2Deployment>
-					<!-- Usado para basic authentication  -->
-					<sharedLibraries>
-						<sharedLibrary>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-context</artifactId>
-						</sharedLibrary>
-						<sharedLibrary>
-							<groupId>org.springframework.security</groupId>
-							<artifactId>spring-security-core</artifactId>
-						</sharedLibrary>
-						<sharedLibrary>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-beans</artifactId>
-						</sharedLibrary>
-						<sharedLibrary>
-							<groupId>org.springframework.security</groupId>
-							<artifactId>spring-security-config</artifactId>
-						</sharedLibrary>
-						<sharedLibrary>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-core</artifactId>
-						</sharedLibrary>
-						<sharedLibrary>
-							<groupId>mysql</groupId>
-							<artifactId>mysql-connector-java</artifactId>
-						</sharedLibrary>
-					</sharedLibraries>
-					<!-- Usado para basic authentication  -->
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.mulesoft.munit.tools</groupId>
-				<artifactId>munit-maven-plugin</artifactId>
-				<version>${munit.version}</version>
-				<executions>
-					<execution>
-						<id>test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>test</goal>
-							<goal>coverage-report</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<coverage>
-						<runCoverage>${munit.runCoverage}</runCoverage>
-						<failBuild>${munit.failBuild}</failBuild>
-						<requiredApplicationCoverage>${munit.requiredApplicationCoverage}</requiredApplicationCoverage>
-						<requiredResourceCoverage>${munit.requiredResourceCoverage}</requiredResourceCoverage>
-						<requiredFlowCoverage>${munit.requiredFlowCoverage}</requiredFlowCoverage>
-						<formats>
-							<format>html</format>
-							<format>console</format>
-							<format>sonar</format>
-						</formats>
-					</coverage>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
@@ -241,51 +74,11 @@
 			<version>1.2.2</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
-		<!-- Usado para basic authentication  -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${spring-security.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${spring-security.version}</version>
-		</dependency>
-		<!-- Usado para basic authentication  -->
-		<dependency>
-			<groupId>org.mule.modules</groupId>
-			<artifactId>mule-oauth-module</artifactId>
-			<version>1.1.21</version>
-			<classifier>mule-plugin</classifier>
-		</dependency>
 		<dependency>
 			<groupId>com.mulesoft.connectors</groupId>
 			<artifactId>mule-kafka-connector</artifactId>
 			<version>4.10.0</version>
 			<classifier>mule-plugin</classifier>
-		</dependency>
-		<dependency>
-			<groupId>303cdbf7-2368-4ad8-893b-144badc46700</groupId>
-			<artifactId>architeture-eapi-template</artifactId>
-			<version>1.0.1</version>
-			<classifier>raml</classifier>
-			<type>zip</type>
 		</dependency>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>

@@ -13,20 +13,5 @@ http:
   read:
     timeout: "5000"
     
-templatePapi:
-  protocol: "HTTP"
-  host: "localhost"
-  basePath: "/v1"
-  port: "8182"
-  timeout:
-    connection: "600000"
-    response: "600000"
-  authorization: "dGVtcGxhdGU6dGVtcGxhdGU="
-    
-elk:
-  kafka:
-   bootstrap: "localhost:9092,localhost:9093"
-   topic: "cea-integration-crm-mdm-topic-log"  
-   
-   
+
   
