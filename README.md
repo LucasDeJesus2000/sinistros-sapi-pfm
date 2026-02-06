@@ -226,7 +226,7 @@ CREATE TABLE tb_comentario (
 
 * **Lucas Oliveira** - *Desenvolvedor e responsável pelo material*
 * **Lucas Fabiano** - *Arquiteto de integrações & Instrutor*
-* **Lucas Oliveira** - *Arquiteto de Soluções & Instrutor*
+* **Bruno Correia** - *Arquiteto de Soluções & Instrutor*
 * **Equipe PFM Porto** - *Time de Desenvolvimento*
 
 ---
@@ -235,4 +235,3 @@ CREATE TABLE tb_comentario (
 
 ```
 
-```
