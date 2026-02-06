@@ -1,4 +1,4 @@
-# 🚀 PFM Porto - MuleSoft Architecture Training
+# PFM Porto - MuleSoft Architecture Training
 ### Auto Claims Ingestion System (Sistema de Ingestão de Sinistros)
 
 ![MuleSoft](https://img.shields.io/badge/MuleSoft-Anypoint_Platform-blue?style=for-the-badge&logo=mulesoft)
@@ -11,7 +11,7 @@ O projeto simula uma **System API** robusta para o ecossistema de Seguros Auto, 
 
 ---
 
-## 🏗️ Arquitetura da Solução
+## Arquitetura da Solução
 
 O sistema adota uma arquitetura **Híbrida (Síncrona/Assíncrona)** para garantir alta disponibilidade na ingestão e consistência imediata na gestão do ciclo de vida do sinistro.
 
@@ -63,7 +63,7 @@ graph TD
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * **Linguagem de Especificação:** RAML 1.0 (RESTful API Modeling Language)
 * **Transformação de Dados:** DataWeave 2.0
@@ -74,7 +74,7 @@ graph TD
 
 ---
 
-## 📚 Funcionalidades da API
+## Funcionalidades da API
 
 A API foi desenhada seguindo os princípios RESTful e suporta os seguintes recursos:
 
@@ -104,7 +104,7 @@ A API foi desenhada seguindo os princípios RESTful e suporta os seguintes recur
 
 ---
 
-## 🚀 Como Executar o Projeto
+## Como Executar o Projeto
 
 ### Pré-requisitos
 
@@ -163,7 +163,7 @@ CREATE TABLE tb_comentario (
 
 ---
 
-## 📂 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 /
@@ -185,7 +185,7 @@ CREATE TABLE tb_comentario (
 
 ---
 
-## 🧪 Exemplos de Payload (Para Teste)
+## Exemplos de Payload (Para Teste)
 
 **1. Criar Sinistro:**
 
@@ -222,7 +222,7 @@ CREATE TABLE tb_comentario (
 
 ---
 
-## 👨‍💻 Autores e Instrutores
+## Autores e Instrutores
 
 * **Lucas Oliveira** - *Desenvolvedor e responsável pelo material*
 * **Lucas Fabiano** - *Arquiteto de integrações & Instrutor*
