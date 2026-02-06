@@ -10,7 +10,7 @@
   "secureProperties": [],
   "supportedJavaVersions": [],
   "redeploymentEnabled": true,
-  "name": "b577bafa-9d8c-45e8-9250-70a6057355d2:architecture-eapi-template:1.0.0-SNAPSHOT",
+  "name": "com.mycompany:sinistros-sapi-pfm:1.0.0-SNAPSHOT",
   "minMuleVersion": "4.6.0",
   "requiredProduct": "MULE_EE",
   "classLoaderModelLoaderDescriptor": {

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="MULE_LIB/0c8d88c2-d09d-472f-a589-9ca239060bdc/mule-plugin-sinistros-sapi-pfm/1.0.1"/>
+	<classpathentry kind="con" path="org.mule.tooling.MULE_PROJECT_LIB"/>
+	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-db-connector/1.14.17"/>
+	<classpathentry kind="con" path="MULE_LIB/com.mulesoft.connectors/mule-kafka-connector/4.10.0"/>
+	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-objectstore-connector/1.2.2"/>
+	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-http-connector/1.10.3"/>
 	<classpathentry kind="con" path="MULE_LIB/com.mulesoft.modules/mule-secure-configuration-property-module/1.2.7"/>
 	<classpathentry kind="con" path="MULE_LIB/com.mulesoft.munit/munit-tools/3.3.1"/>
 	<classpathentry kind="con" path="MULE_LIB/com.mulesoft.munit/munit-runner/3.3.1"/>
-	<classpathentry kind="con" path="org.mule.tooling.MULE_PROJECT_LIB"/>
-	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-db-connector/1.14.17"/>
 	<classpathentry kind="con" path="MULE_LIB/org.mule.modules/mule-apikit-module/1.11.0"/>
-	<classpathentry kind="con" path="org.mule.tooling.API_SPEC_LIB/303cdbf7-2368-4ad8-893b-144badc46700/common-data-types/1.0.0"/>
-	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-http-connector/1.10.3"/>
-	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-objectstore-connector/1.2.2"/>
 	<classpathentry kind="con" path="MULE_LIB/org.mule.connectors/mule-sockets-connector/1.2.4"/>
-	<classpathentry kind="con" path="MULE_LIB/com.mulesoft.connectors/mule-kafka-connector/4.10.0"/>
+	<classpathentry kind="con" path="org.mule.tooling.API_SPEC_LIB/303cdbf7-2368-4ad8-893b-144badc46700/common-data-types/1.0.0"/>
 	<classpathentry exported="true" kind="con" path="MULE_RUNTIME/org.mule.tooling.server.4.9.ee"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/main/mule"/>
